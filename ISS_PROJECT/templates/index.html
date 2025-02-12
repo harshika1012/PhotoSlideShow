@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+      
+       body {
+        background: #111;
+        height: 100vh;
+    }
+
+    .wrapper span {
+        position: absolute;
+        color: #18191f;
+        text-shadow: 0 0 25px aliceblue,
+            0 0 50px rgb(53, 178, 53),
+            0 0 100px rgb(54, 194, 54),
+            0 0 150px aliceblue;
+        animation: animate 9s linear infinite;
+        font-size: 100px;
+        font-family: sans-serif;
+        z-index: -1;
+        bottom: -120px;
+    }
+
+    .wrapper span:nth-child(1) {
+        left: 60px;
+        animation-delay: 0.6s;
+    }
+
+    .wrapper span:nth-child(2) {
+        left: 10%;
+        animation-delay: 3s;
+    }
+
+    .wrapper span:nth-child(3) {
+        left: 30%;
+        animation-delay: 2s;
+    }
+
+    .wrapper span:nth-child(4) {
+        left: 10%;
+        animation-delay: 5s;
+    }
+
+    .wrapper span:nth-child(5) {
+        left: 40%;
+        animation-delay: 1s;
+    }
+
+    .wrapper span:nth-child(6) {
+        left: 50%;
+        animation-delay: 5s;
+    }
+
+    .wrapper span:nth-child(7) {
+        left: 60%;
+        animation-delay: 6s;
+    }
+
+    .wrapper span:nth-child(8) {
+        left: 70%;
+        animation-delay: 8s;
+    }
+
+    .wrapper span:nth-child(9) {
+        left: 80%;
+        animation-delay: 6s;
+    }
+
+    .wrapper span:nth-child(10) {
+        left: 90%;
+        animation-delay: 4s;
+    }
+
+    .wrapper span:nth-child(11) {
+        left: 20%;
+        animation-delay: 4s;
+    }
+
+    @keyframes animate {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        70% {
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: translateY(-800px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+        .banner{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 1;
+        }
+        .content button{
+            -webkit-text-fill-color:#111;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: white;
+
+            font-family: montserrat;
+            font-size: 80px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1;
+            /* border: none; */
+        }
+        .content button b{
+            -webkit-text-fill-color:#111;
+            letter-spacing: normal;
+
+        }
+        
+       
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <span>A</span>
+        <span>s</span>
+        <span>y</span>
+        <span>E</span>
+        <span>N</span>
+        <span>D</span>
+        <span>R</span>
+        <span>I</span>
+        <span>K</span>
+        <span>O</span>
+        <span>H</span>
+
+    </div>
+   
+    <div class="banner">
+        <div class="content">
+            <button id="sign" style="background-color: #18191f;text-decoration: none;"><a href="{{ url_for('login') }}" style="text-decoration: none;">Login</a></button><br><br>
+            <button id="login" style="background-color: #18191f;"><a href="{{ url_for('signup') }}" style="text-decoration: none;">Sign up</a></button>
+       
+            <!-- <button id="sign" style="background-color: #18191f;text-decoration: none;"><a href="signup.html" style="text-decoration: none;">Sign up</a></button><br><br>
+            <button id="login" style="background-color: #18191f;"><a href="login.html" style="text-decoration: none;">Login</a></button> -->
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- <link rel="stylesheet" href="signup.css"> -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 360px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+input[type="text"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image:url('signup.jpg') ; /* Replace 'signup-background.jpg' with your actual image file */
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 360px;
+    margin: 100px auto;
+    background: rgba(170, 214, 246, 0.8); /* Semi-transparent white background for better readability */
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the content horizontally */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signup-form"  method="post" action="{{ url_for('signup') }}">
+            <div class="form-group">
+                
+                <label for="name">Username:</label>
+                <!-- <input type="text" id="name2" name="name" required> -->
+                <input type="text" id="username" name="username" required>
+
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="button">Sign Up</button>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('signup-form');
+    
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+    
+                const formData = new FormData(form); // Create a new FormData object
+    
+                fetch('/signup', {
+                    method: 'POST',
+                    body: formData // Set the form data as the request body
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    console.log(data); // Log the response from the server
+                    alert(data.message); // Display success message
+                    window.location.href = '/login'; // Redirect to the login page
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                    // Optionally, display an error message to the user
+                    alert('There was an error processing your request. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

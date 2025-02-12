@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Slideshow App</title>
+    <style>
+        body {
+            background: #111;
+            height: 100vh;
+        }
+
+        .wrapper span {
+            position: absolute;
+            color: #18191f;
+            text-shadow: 0 0 25px aliceblue,
+                0 0 50px rgb(53, 178, 53),
+                0 0 100px rgb(54, 194, 54),
+                0 0 150px aliceblue;
+            animation: animate 9s linear infinite;
+            font-size: 100px;
+            font-family: sans-serif;
+            z-index: -1;
+            bottom: -120px;
+        }
+
+        .wrapper span:nth-child(1) {
+            left: 60px;
+            animation-delay: 0.6s;
+        }
+
+        .wrapper span:nth-child(2) {
+            left: 10%;
+            animation-delay: 3s;
+        }
+
+        .wrapper span:nth-child(3) {
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .wrapper span:nth-child(4) {
+            left: 10%;
+            animation-delay: 5s;
+        }
+
+        .wrapper span:nth-child(5) {
+            left: 40%;
+            animation-delay: 1s;
+        }
+
+        .wrapper span:nth-child(6) {
+            left: 50%;
+            animation-delay: 5s;
+        }
+
+        .wrapper span:nth-child(7) {
+            left: 60%;
+            animation-delay: 6s;
+        }
+
+        .wrapper span:nth-child(8) {
+            left: 70%;
+            animation-delay: 8s;
+        }
+
+        .wrapper span:nth-child(9) {
+            left: 80%;
+            animation-delay: 6s;
+        }
+
+        .wrapper span:nth-child(10) {
+            left: 90%;
+            animation-delay: 4s;
+        }
+
+        .wrapper span:nth-child(11) {
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-800px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.jpg');
+            /* Replace 'background.jpg' with your image file */
+            background-size: cover;
+            opacity: 0.5;
+            /* Adjust as needed */
+            z-index: -1;
+            /* Ensure it stays behind other content */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 100px auto;
+            /* Center the container vertically */
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            /* Ensure it stays on top of the background */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #drop-area {
+            border: 4px dashed #007bff;
+            padding: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            margin: 20px auto;
+            /* Center the drop area horizontally */
+        }
+
+        #drop-area:hover {
+            border-color: #0056b3;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+            border-radius: 100px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        #image-list {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-item {
+            margin: 15px;
+        }
+
+        /* .image-item img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+} */
+        .image-item {
+            width: 200px;
+            /* Set a fixed width for the container */
+            height: 200px;
+            /* Set a fixed height for the container */
+            margin: 15px;
+            overflow: hidden;
+            /* Hide any overflow (if images are larger) */
+        }
+
+        .image-item img {
+            width: 100%;
+            /* Ensure images fill the container width */
+            height: auto;
+            /* Maintain aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+
+        .image-item img:hover {
+            transform: scale(1.1);
+        }
+
+        #video-preview {
+            margin-top: 20px;
+        }
+
+        #video-player {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+        }
+
+        #convert-button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #video-customization {
+            text-align: center;
+            margin-bottom: 20px;
+
+        }
+
+        #video-customization div {
+            margin-bottom: 10px;
+            /* Add some spacing between elements */
+        }
+
+        #video-customization button {
+            margin: 0 5px;
+            /* Add some spacing between buttons */
+        }
+
+        #play-video-button {
+            display: block;
+            margin: 20px auto 0;
+            /* Center horizontally */
+        }
+
+        #image-duration {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #video-quality {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #video-resolution {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body onload="fetchImages()">
+    <div class="wrapper">
+        <span>J</span>
+        <span>S</span>
+        <span>Y</span>
+        <span>E</span>
+        <span>N</span>
+        <span>D</span>
+        <span>R</span>
+        <span>I</span>
+        <span>K</span>
+        <span>O</span>
+        <span>H</span>
+    </div>
+    <div class="container">
+
+
+        <h1>Upload Images</h1>
+        <div id="drop-area">
+            <p>Drag & Drop Images Here</p>
+            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+            <button class="button" id="upload-button" onclick="uploadImages()">Upload Images</button>
+        </div>
+        <div id="image-list"></div>
+
+        <div class="container">
+            <h1>IMAGE GALLERY</h1>
+            <div id="image-gallery"></div>
+            <button onclick="getSelectedImages()">Get Selected Images</button>
+            <ul id="selected-images"></ul>
+        </div>
+
+
+        <div id="video-customization">
+            <h2>Video Customization</h2>
+            <form id="video-form">
+                <div>
+                    <label for="background-music">Background Music:</label>
+                    <input type="file" id="background-music" accept="audio/*">
+                </div>
+                <div id="music-preview"></div>
+        </div>
+        <div>
+            <label for="image-duration">Image Duration (seconds):</label>
+            <input type="number" id="image-duration" min="1" value="5">
+        </div>
+        <!-- <div>
+            <label for="transition-effect">Transition Effect:</label>
+            <select id="transition-effect">
+                <option value="fade">Fade</option>
+                <option value="slide">Slide</option>
+
+            </select>
+        </div> -->
+        <!-- <div id="video-preview">
+            <h2>Video Preview</h2>
+
+
+
+        </div> -->
+        <div>
+            <label for="video-resolution">Video Resolution:</label>
+            <select id="video-resolution">
+                <option value="480">480p</option>
+                <option value="720">720p</option>
+                <option value="1080">1080p</option>
+                <option value="1080">4k</option>
+
+            </select>
+        </div>
+        <div>
+            <label for="video-quality">Video Quality:</label>
+            <select id="video-quality">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+        <!-- <div id="play-video-container">
+            <button id="play-video-button" class="button">Play Video</button>
+        </div> -->
+
+        </form>
+
+        <div id="convert-button-container">
+            <button onclick="convertToVideo()">Create Video</button>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function convertVideo() {
+            console.log("hello");
+        }
+        function uploadImages() {
+            const selectedFiles = document.getElementById('fileElem').files;
+            if (selectedFiles.length === 0) {
+                alert('Please select at least one image file.');
+                return;
+            }
+
+            const formData = new FormData();
+            for (let i = 0; i < selectedFiles.length; i++) {
+                formData.append('file', selectedFiles[i]);
+
+            }
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    // Optionally, clear the selected files from the input field
+                    document.getElementById('fileElem').value = '';
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while uploading the images.');
+                });
+        }
+        function handleFiles(files) {
+            const fileList = document.getElementById("image-list");
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('image/')) {
+                    continue;
+                }
+                const img = document.createElement("img");
+                img.classList.add("image-item");
+                img.file = file;
+                const reader = new FileReader();
+                reader.onload = (function (aImg) {
+                    return function (e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+                // Create a new div for the image
+                const imageDiv = document.createElement("div");
+                imageDiv.classList.add("image-div");
+                // Append the image to the div
+                imageDiv.appendChild(img);
+                // Append the div to the image list
+                fileList.appendChild(imageDiv);
+            }
+        }
+
+        //         document.addEventListener('DOMContentLoaded', (event) => {
+        //     var button = document.querySelector('#convert-button-container button');
+        //     button.addEventListener('click', convertToVideo);
+        // });
+
+        function convertToVideo() {
+            console.log("hello");
+            const selectedImages = document.querySelectorAll('input[type="checkbox"]:checked');
+            const imageFiles = [];
+            const imageDuration = parseInt(document.getElementById('image-duration').value);
+            const resolution = document.getElementById("video-resolution").value;
+            let width = 0, height = 0;
+            var quality = document.getElementById("video-quality").value;
+            const selectedAudios = [];
+
+
+            document.querySelector('#background-music').addEventListener('change', function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                var audioDataAsBlob = reader.result;
+                console.log(audioDataAsBlob);
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+            });
+            // Assuming background-music is an id
+            var audioElement = document.querySelector('#background-music');
+
+            // Get the src attribute
+            var src = audioElement.getAttribute('src');
+            console.log(src);
+            // Fetch the data from the src URL
+            fetch(src)
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a new FileReader object
+                    var reader = new FileReader();
+
+                    // Define the onload event handler
+                    reader.onloadend = function () {
+                        // Get the base64 string
+                        var base64String = reader.result;
+
+                        // Push the base64 string to the selectedAudios array
+                        selectedAudios.push(base64String);
+                    }
+
+                    // Read the blob as a base64 string
+                    reader.readAsDataURL(blob);
+                });
+
+            selectedImages.forEach(image => {
+                const img = image.parentNode.querySelector('img');
+                imageFiles.push(img.src); // Push the image source URL
+            });
+
+            if (imageFiles.length === 0) {
+                alert('Please select at least one image.');
+                return;
+            }
+
+            if (quality === 'low') {
+                quality = 40;
+            } else if (quality === 'medium') {
+                quality = 60;
+            } else if (quality === 'high') {
+                quality = 90;
+            }
+
+            if (resolution === '480p') {
+                width = 854;
+                height = 480;
+            } else if (resolution === '720p') {
+                width = 1280;
+                height = 720;
+            } else if (resolution === '1080p') {
+                width = 1920;
+                height = 1080;
+            } else {
+                width = 3840;
+                height = 2160;
+            }
+            console.log(imageFiles);
+            console.log(selectedAudios);
+            console.log(imageDuration);
+            console.log(width);
+            console.log(height);
+            console.log(quality);
+            $.ajax({
+                url: '/create_video', // The endpoint where the compile_images_to_video function is
+                type: 'POST',
+                data: JSON.stringify({ images: imageFiles, audios: selectedAudios, fps: imageDuration, width: width, height: height, quality: quality }), // Send the selected images, audios and duration to the server
+                contentType: 'application/json',
+                success: function (response) {
+                    // Handle the response from the server
+                    window.location.href = '/videopage.html';
+                    console.log(response);
+                    alert(response.message);
+                },
+                error: function (error) {
+                    // Handle any errors
+                    console.log(error);
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropArea = document.getElementById("drop-area");
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false)
+                document.body.addEventListener(eventName, preventDefaults, false)
+            });
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            dropArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                // Append the dropped files to the existing image list
+                handleFiles(files);
+            }
+            // Event listener for background music input
+            document.getElementById("background-music").addEventListener("change", function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const audioPlayer = document.createElement("audio");
+                    audioPlayer.controls = true;
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        audioPlayer.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+
+                    const musicPreview = document.getElementById("music-preview");
+                    musicPreview.innerHTML = "";
+                    musicPreview.appendChild(audioPlayer);
+                } else {
+                    console.error("No file selected.");
+                }
+            });
+
+        });
+        function playVideoFromLocalStorage() {
+            // Set the source of the video player to the specific video file
+            const videoPlayer = document.getElementById("video-player");
+            videoPlayer.src = "video.mp4";
+            // Start playing the video
+            videoPlayer.play();
+        }
+        function updateVideoPreview(videoSrc) {
+            const videoPlayer = document.getElementById("video-player");
+            videoPlayer.src = videoSrc;
+        }
+
+        function fetchImages() {
+            fetch('/gallery')
+                .then(response => response.json())
+                .then(data => {
+                    const imageGallery = document.getElementById('image-gallery');
+                    imageGallery.innerHTML = ''; // Clear previous images
+                    data.images.forEach(image => {
+                        const img = document.createElement('img');
+                        img.src = 'data:image/' + image.extension + ';base64,' + image.binary_image;
+                        img.style.width = '200px'; // Set the image width
+
+                        // Create a checkbox for each image
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.value = img.src; // Store the image source (base64 string)
+                        checkbox.addEventListener('change', function () {
+                            if (this.checked) {
+                                addImageToList(img.src);
+                            } else {
+                                removeImageFromList(img.src);
+                            }
+                        });
+
+                        const div = document.createElement('div');
+                        div.appendChild(checkbox);
+                        div.appendChild(img);
+                        imageGallery.appendChild(div);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching images:', error);
+                });
+        }
+        const selectedImages = [];
+
+        function addImageToList(imageSrc) {
+            if (!selectedImages.includes(imageSrc)) {
+                selectedImages.push(imageSrc);
+            }
+        }
+
+        function removeImageFromList(imageSrc) {
+            const index = selectedImages.indexOf(imageSrc);
+            if (index !== -1) {
+                selectedImages.splice(index, 1);
+            }
+        }
+
+        function getSelectedImages() {
+            const selectedImagesList = document.getElementById('selected-images');
+            selectedImagesList.innerHTML = ''; // Clear previous selected images
+
+            selectedImages.forEach(imageSrc => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.style.width = '200px'; // Set the image width
+
+                const li = document.createElement('li');
+                li.appendChild(img);
+                selectedImagesList.appendChild(li);
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>

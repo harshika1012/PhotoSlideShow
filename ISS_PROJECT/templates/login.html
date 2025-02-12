@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- <link rel="stylesheet" href="login.css"> -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color:black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 360px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/signup.jpg'); /* Replace 'login-background.jpg' with your actual image file */
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 360px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the content horizontally */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('signup.jpg'); /* Replace 'signup-background.jpg' with your actual image file */
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 360px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the content horizontally */
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- <div class="container">
+        <h1>Login</h1>
+         <form method="post" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label >Username:</label><br>
+                <input  type="text",id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button">Login</button>
+        </form>
+    </div> -->
+    <div class="container">
+        <h1>Login</h1>
+        <form method="post" action="{{ url_for('login') }}" id="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button">Login</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('login-form');
+    
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+    
+                const formData = new FormData(form); // Create a new FormData object
+    
+                fetch('/login', {
+                    method: 'POST',
+                    body: formData // Set the form data as the request body
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    console.log(data); // Log the response from the server
+                    alert(data.message); // Display success message
+                    if (data.message === 'Login successful!') {
+                        window.location.href = '/project/' + formData.get('username'); // Redirect to the project page
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                    // Optionally, display an error message to the user
+                    alert('There was an error processing your request. Please try again.');
+                });
+            });
+        });
+    </script>
+   
+</body>
+
+</html>

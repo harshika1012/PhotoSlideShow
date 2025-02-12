@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+</head>
+<body>
+    <h1>Welcome to the Video Page</h1>
+    <video width="320" height="240" controls>
+        <source src="/static/output_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        // JavaScript code for the videopage.html
+// This script is just an example, replace it with your actual JavaScript logic for video handling.
+document.addEventListener('DOMContentLoaded', () => {
+    const videoElement = document.getElementById('video-element');
+    const playButton = document.getElementById('play-button');
+    const pauseButton = document.getElementById('pause-button');
+
+    playButton.addEventListener('click', () => {
+        videoElement.play();
+    });
+
+    pauseButton.addEventListener('click', () => {
+        videoElement.pause();
+    });
+});
+
+    </script>
+</body>
+</html>

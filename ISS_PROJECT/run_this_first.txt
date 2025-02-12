@@ -1,0 +1,1 @@
+$env:DATABASE_URL = "postgresql://divyansh:q_vGZALNw52BoKtmrp_GZg@good-coyote-9040.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full"
